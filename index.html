@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caio de Camargo | Link Bio</title>
+    
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           DESIGN SYSTEM & VARIABLES
+           ========================================================================== */
+        :root {
+            /* Colors */
+            --color-background: #101010;
+            --color-text-primary: #FFFFFF;
+            --color-text-secondary: #A0A0A0;
+            --color-card-background: #1C1C1C;
+            --color-card-border: #2D2D2D;
+
+            /* Typography */
+            --font-primary: 'Syne', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+
+            /* Spacing & Borders */
+            --spacing-unit: 8px;
+            --border-radius: 12px;
+        }
+
+        /* ==========================================================================
+           GLOBAL RESET & BASE STYLES
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background-color: var(--color-background);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* ==========================================================================
+           LAYOUT CONTAINER
+           ========================================================================== */
+        .container {
+            max-width: 680px;
+            width: 100%;
+            margin: 0 auto;
+            padding: calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 2);
+        }
+
+        /* ==========================================================================
+           HEADER & PROFILE
+           ========================================================================== */
+        .profile-header {
+            text-align: center;
+            margin-bottom: calc(var(--spacing-unit) * 6);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: var(--color-card-border);
+            border: 3px solid var(--color-card-background);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .profile-name {
+            font-family: var(--font-primary);
+            font-weight: 800;
+            font-size: 2.8rem;
+            letter-spacing: -0.02em;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .profile-tagline {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            max-width: 450px;
+            margin: 0 auto;
+        }
+        
+        /* ==========================================================================
+           PROJECT BUTTONS (CARDS)
+           ========================================================================== */
+        .link-cards {
+            display: grid;
+            gap: calc(var(--spacing-unit) * 2.5);
+            margin-bottom: calc(var(--spacing-unit) * 6);
+        }
+
+        .card {
+            display: block;
+            background-color: var(--color-card-background);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--border-radius);
+            padding: calc(var(--spacing-unit) * 3);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease, border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        
+        /* Staggered animation for cards */
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        /* Specific Hover Styles */
+        .card--agency:hover {
+            background: linear-gradient(270deg, #1C1C1C, #2D2D2D);
+            border-color: #555555;
+        }
+
+        .card--consulting:hover {
+            border-color: var(--color-text-primary);
+            border-style: dashed;
+        }
+
+        .card--projects:hover {
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+            border-color: #444444;
+        }
+        
+        .card-title {
+            font-family: var(--font-primary);
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            color: var(--color-text-primary);
+        }
+        
+        .card-description {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .card-cta {
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+        
+        .card:hover .card-cta {
+            color: var(--color-text-primary);
+        }
+
+        /* ==========================================================================
+           "HOW I CAN HELP" SECTION
+           ========================================================================== */
+        .value-prop {
+            background-color: var(--color-card-background);
+            border: 1px solid var(--color-card-border);
+            padding: calc(var(--spacing-unit) * 4);
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: calc(var(--spacing-unit) * 6);
+            animation: slideUp 0.6s ease-out 0.8s forwards;
+            opacity: 0;
+        }
+
+        .section-title {
+            font-family: var(--font-primary);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .value-prop-text {
+            color: var(--color-text-secondary);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+        
+        .contact-button {
+            display: inline-block;
+            background-image: linear-gradient(to top, #F5F5F5, #FFFFFF);
+            color: var(--color-background);
+            font-family: var(--font-primary);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 4);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            border: none;
+        }
+        
+        .contact-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        .site-footer {
+            text-align: center;
+            padding-bottom: calc(var(--spacing-unit) * 2);
+            animation: fadeIn 1s ease-out 1s forwards;
+            opacity: 0;
+        }
+
+        .social-links {
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 calc(var(--spacing-unit) * 1.5);
+            color: var(--color-text-secondary);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--color-text-primary);
+            transform: translateY(-3px);
+        }
+        
+        .social-links svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+        }
+        
+        /* ==========================================================================
+           ANIMATIONS
+           ========================================================================== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==========================================================================
+           RESPONSIVE STYLES
+           ========================================================================== */
+        @media (max-width: 600px) {
+            .profile-name {
+                font-size: 2.2rem;
+            }
+            .profile-tagline {
+                font-size: 1rem;
+            }
+            .container {
+                padding-top: calc(var(--spacing-unit) * 3);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ======================= HEADER ======================= -->
+        <header class="profile-header">
+            <img src="caio-photo.jpg" alt="Caio de Camargo's Profile Photo" class="profile-photo" onerror="this.onerror=null;this.src='https://placehold.co/280x280/1C1C1C/FFFFFF?text=Caio';">
+            <h1 class="profile-name">Caio de Camargo</h1>
+            <p class="profile-tagline">Helping you grow with AI, Strategy & Business.</p>
+        </header>
+
+        <main>
+            <!-- ======================= PROJECT LINKS ======================= -->
+            <section class="link-cards">
+
+                <!-- Button 1: Rarity Agency -->
+                <a href="https://rarityagency.io" target="_blank" rel="noopener noreferrer" class="card card--agency">
+                    <h2 class="card-title">Rarity Agency</h2>
+                    <p class="card-description">Marketing and AI agency to scale your brand and automate operations.</p>
+                    <span class="card-cta">Visit Agency &rarr;</span>
+                </a>
+
+                <!-- Button 2: Consulting -->
+                <a href="#your-consulting-link" class="card card--consulting">
+                    <h2 class="card-title">Strategy & Consulting</h2>
+                    <p class="card-description">Personal and strategic consulting to unlock your business growth.</p>
+                    <span class="card-cta">Learn More &rarr;</span>
+                </a>
+
+                <!-- Button 3: LinkedIn -->
+                <a href="https://www.linkedin.com/in/caiodecamargo/" target="_blank" rel="noopener noreferrer" class="card card--projects">
+                    <h2 class="card-title">Connect on LinkedIn</h2>
+                    <p class="card-description">Let's connect and explore professional opportunities on LinkedIn.</p>
+                    <span class="card-cta">Connect Now &rarr;</span>
+                </a>
+
+            </section>
+
+            <!-- ======================= MISSION STATEMENT ======================= -->
+            <section class="value-prop">
+                <p class="value-prop-text">My mission is to provide the strategic leverage you need to achieve your goals.</p>
+            </section>
+        </main>
+
+        <!-- ======================= FOOTER ======================= -->
+        <footer class="site-footer">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/caiodecamargo/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X/Twitter Profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                </a>
+            </div>
+            <p class="copyright">&copy; 2025 Caio de Camargo. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
