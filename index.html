@@ -8,7 +8,7 @@
     <!-- Google Fonts Import -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;900&family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
     <style>
         /* ==========================================================================
@@ -23,8 +23,8 @@
             --color-card-border: #2D2D2D;
 
             /* Typography */
-            --font-primary: 'Syne', sans-serif;
-            --font-secondary: 'Inter', sans-serif;
+            --font-primary: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            --font-secondary: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
             /* Spacing & Borders */
             --spacing-unit: 8px;
@@ -47,9 +47,11 @@
         body {
             font-family: var(--font-secondary);
             background:
-                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.04) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.04) 0%, transparent 50%),
-                linear-gradient(135deg, #0a0a0a 0%, #101010 100%);
+                radial-gradient(ellipse at top left, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at top right, rgba(168, 85, 247, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom left, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 25%, #0f0a1f 50%, #1a0a2a 75%, #0a0a0a 100%);
             color: var(--color-text-primary);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
@@ -71,14 +73,27 @@
             height: 100%;
             background:
                 repeating-linear-gradient(
-                    0deg,
+                    45deg,
                     transparent,
                     transparent 2px,
-                    rgba(139, 92, 246, 0.008) 2px,
-                    rgba(139, 92, 246, 0.008) 4px
+                    rgba(139, 92, 246, 0.02) 2px,
+                    rgba(139, 92, 246, 0.02) 4px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(168, 85, 247, 0.015) 2px,
+                    rgba(168, 85, 247, 0.015) 4px
                 );
             pointer-events: none;
             z-index: 1;
+            animation: shimmer 20s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
         }
 
         /* ==========================================================================
@@ -122,17 +137,25 @@
 
         .profile-name {
             font-family: var(--font-primary);
-            font-weight: 800;
-            font-size: 2.2rem;
-            letter-spacing: -0.02em;
-            margin-bottom: calc(var(--spacing-unit) * 1);
+            font-weight: 700;
+            font-size: 3.2rem;
+            letter-spacing: -0.03em;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .profile-tagline {
-            font-size: 1.1rem;
+            font-size: 1.4rem;
+            font-weight: 400;
             color: var(--color-text-secondary);
-            max-width: 450px;
+            max-width: 520px;
             margin: 0 auto;
+            line-height: 1.5;
+            letter-spacing: -0.01em;
         }
         
         /* ==========================================================================
@@ -179,10 +202,11 @@
         .card:nth-child(1) { animation-delay: 0.2s; }
         .card:nth-child(2) { animation-delay: 0.4s; }
         .card:nth-child(3) { animation-delay: 0.6s; }
+        .card:nth-child(4) { animation-delay: 0.8s; }
 
         .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 25px rgba(139, 92, 246, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3), 0 0 20px rgba(139, 92, 246, 0.08);
         }
 
         /* Specific Hover Styles */
@@ -205,16 +229,20 @@
         
         .card-title {
             font-family: var(--font-primary);
-            font-weight: 700;
-            font-size: 1.4rem;
-            margin-bottom: calc(var(--spacing-unit) * 1);
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
             color: var(--color-text-primary);
+            line-height: 1.3;
+            letter-spacing: -0.02em;
         }
-        
+
         .card-description {
-            font-size: 0.95rem;
+            font-size: 1rem;
+            font-weight: 400;
             color: var(--color-text-secondary);
             margin-bottom: calc(var(--spacing-unit) * 2);
+            line-height: 1.6;
         }
 
         .card-cta {
@@ -238,15 +266,16 @@
             border-radius: var(--border-radius);
             text-align: center;
             margin-bottom: calc(var(--spacing-unit) * 6);
-            animation: slideUp 0.6s ease-out 0.8s forwards;
+            animation: slideUp 0.6s ease-out 1.0s forwards;
             opacity: 0;
         }
 
         .section-title {
             font-family: var(--font-primary);
             font-size: 1.8rem;
-            font-weight: 700;
+            font-weight: 600;
             margin-bottom: calc(var(--spacing-unit) * 2);
+            letter-spacing: -0.02em;
         }
 
         .value-prop-text {
@@ -256,28 +285,32 @@
             margin-right: auto;
             margin-bottom: calc(var(--spacing-unit) * 3);
             text-align: center;
-            line-height: 1.6;
-            font-size: 1.3rem;
-            font-weight: bold;
-            font-style: italic;
+            line-height: 1.5;
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
         }
         
         .contact-button {
             display: inline-block;
-            background-image: linear-gradient(to top, #F5F5F5, #FFFFFF);
-            color: var(--color-background);
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+            color: #ffffff;
             font-family: var(--font-primary);
-            font-weight: 700;
+            font-weight: 600;
             font-size: 1rem;
-            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 4);
-            border-radius: var(--border-radius);
+            padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
+            border-radius: 12px;
             text-decoration: none;
-            transition: transform 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             border: none;
+            letter-spacing: -0.01em;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
         }
         
         .contact-button:hover {
-            transform: scale(1.05);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+            background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
         }
 
         /* ==========================================================================
@@ -315,6 +348,181 @@
             font-size: 0.85rem;
             color: var(--color-text-secondary);
         }
+
+        /* ==========================================================================
+           MODAL STYLES
+           ========================================================================== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%),
+                rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: modalFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-content {
+            background:
+                linear-gradient(135deg,
+                    rgba(139, 92, 246, 0.1) 0%,
+                    rgba(28, 28, 28, 0.95) 20%,
+                    rgba(168, 85, 247, 0.05) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 20px;
+            padding: calc(var(--spacing-unit) * 5);
+            max-width: 520px;
+            width: 90%;
+            position: relative;
+            animation: modalSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(139, 92, 246, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        .modal-title {
+            font-family: var(--font-primary);
+            font-weight: 700;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .modal-subtitle {
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .country-options {
+            display: grid;
+            gap: calc(var(--spacing-unit) * 2.5);
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .country-option {
+            display: block;
+            background:
+                linear-gradient(135deg,
+                    rgba(139, 92, 246, 0.08) 0%,
+                    rgba(168, 85, 247, 0.04) 50%,
+                    rgba(139, 92, 246, 0.02) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            border-radius: 16px;
+            padding: calc(var(--spacing-unit) * 3);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .country-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .country-option:hover::before {
+            left: 100%;
+        }
+
+        .country-option:hover {
+            background:
+                linear-gradient(135deg,
+                    rgba(139, 92, 246, 0.15) 0%,
+                    rgba(168, 85, 247, 0.08) 50%,
+                    rgba(139, 92, 246, 0.05) 100%);
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow:
+                0 15px 30px rgba(0, 0, 0, 0.3),
+                0 0 25px rgba(139, 92, 246, 0.2);
+        }
+
+        .country-name {
+            font-family: var(--font-primary);
+            font-weight: 600;
+            font-size: 1.3rem;
+            color: var(--color-text-primary);
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            letter-spacing: -0.01em;
+            position: relative;
+            z-index: 2;
+        }
+
+        .country-description {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+            position: relative;
+            z-index: 2;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: calc(var(--spacing-unit) * 2.5);
+            right: calc(var(--spacing-unit) * 2.5);
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 50%;
+            color: var(--color-text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 0;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .close-modal:hover {
+            color: var(--color-text-primary);
+            background: rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.4);
+            transform: scale(1.1);
+        }
+
+        /* Real Estate button specific styling */
+        .card--realestate:hover {
+            background: linear-gradient(135deg, #1C1C1C, rgba(34, 197, 94, 0.05), #2D2D2D);
+            border-color: rgba(34, 197, 94, 0.3);
+        }
         
         /* ==========================================================================
            ANIMATIONS
@@ -335,18 +543,163 @@
             }
         }
 
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
         /* ==========================================================================
            RESPONSIVE STYLES
            ========================================================================== */
-        @media (max-width: 600px) {
-            .profile-name {
-                font-size: 1.8rem;
-            }
-            .profile-tagline {
-                font-size: 1rem;
-            }
+
+        /* iPhone and small mobile devices */
+        @media (max-width: 480px) {
             .container {
-                padding-top: calc(var(--spacing-unit) * 3);
+                padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 2);
+                max-width: 100%;
+            }
+
+            .profile-photo {
+                width: 100px;
+                height: 100px;
+                margin-bottom: calc(var(--spacing-unit) * 1.5);
+            }
+
+            .profile-name {
+                font-size: 2.2rem;
+                margin-bottom: calc(var(--spacing-unit) * 1.5);
+                line-height: 1.1;
+            }
+
+            .profile-tagline {
+                font-size: 1.1rem;
+                line-height: 1.4;
+                margin-bottom: calc(var(--spacing-unit) * 1);
+            }
+
+            .card {
+                padding: calc(var(--spacing-unit) * 2.5);
+            }
+
+            .card-title {
+                font-size: 1.2rem;
+                margin-bottom: calc(var(--spacing-unit) * 1);
+            }
+
+            .card-description {
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin-bottom: calc(var(--spacing-unit) * 1.5);
+            }
+
+            .value-prop {
+                padding: calc(var(--spacing-unit) * 3);
+                margin-bottom: calc(var(--spacing-unit) * 4);
+            }
+
+            .value-prop-text {
+                font-size: 1.1rem;
+                line-height: 1.5;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: calc(var(--spacing-unit) * 3);
+                margin: calc(var(--spacing-unit) * 2);
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+                margin-bottom: calc(var(--spacing-unit) * 1);
+            }
+
+            .modal-subtitle {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            .country-option {
+                padding: calc(var(--spacing-unit) * 2);
+            }
+
+            .country-name {
+                font-size: 1.1rem;
+            }
+
+            .country-description {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+
+            .social-links svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        /* Tablet and medium devices */
+        @media (max-width: 768px) and (min-width: 481px) {
+            .container {
+                padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 3);
+            }
+
+            .profile-name {
+                font-size: 2.4rem;
+            }
+
+            .profile-tagline {
+                font-size: 1.2rem;
+            }
+
+            .card-title {
+                font-size: 1.3rem;
+            }
+
+            .modal-content {
+                width: 90%;
+            }
+        }
+
+        /* Large mobile devices */
+        @media (max-width: 600px) {
+            .link-cards {
+                gap: calc(var(--spacing-unit) * 2);
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Touch improvements for mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .card {
+                transition: transform 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .card:active {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.3), 0 0 20px rgba(139, 92, 246, 0.1);
+            }
+
+            .country-option:active {
+                transform: translateY(-1px);
+                background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.08) 100%);
             }
         }
     </style>
@@ -374,14 +727,21 @@
                     <span class="card-cta">Visit Agency &rarr;</span>
                 </a>
 
-                <!-- Button 2: Consulting -->
+                <!-- Button 2: Real Estate Investments -->
+                <button onclick="openRealEstateModal()" class="card card--realestate" style="border: none; cursor: pointer; width: 100%; text-align: left;">
+                    <h2 class="card-title">Exclusive Real Estate Opportunities</h2>
+                    <p class="card-description">Discover high-yield investment opportunities in emerging markets. Limited spots available for serious investors.</p>
+                    <span class="card-cta">Explore Investments &rarr;</span>
+                </button>
+
+                <!-- Button 3: Consulting -->
                 <a href="https://calendly.com/caiodcamargo/caiodecamargo_privatecall" target="_blank" rel="noopener noreferrer" class="card card--consulting">
                     <h2 class="card-title">Strategy & Consulting</h2>
                     <p class="card-description">Personal and strategic consulting to unlock your business growth.</p>
                     <span class="card-cta">Learn More &rarr;</span>
                 </a>
 
-                <!-- Button 3: LinkedIn -->
+                <!-- Button 4: LinkedIn -->
                 <a href="https://www.linkedin.com/in/caiodecamargo/" target="_blank" rel="noopener noreferrer" class="card card--projects">
                     <h2 class="card-title">Connect on LinkedIn</h2>
                     <p class="card-description">Let's connect and explore professional opportunities on LinkedIn.</p>
@@ -414,6 +774,74 @@
         </footer>
 
     </div>
+
+    <!-- ======================= REAL ESTATE MODAL ======================= -->
+    <div id="realEstateModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeRealEstateModal()">&times;</button>
+
+            <div class="modal-header">
+                <h2 class="modal-title">Real Estate Investment Opportunities</h2>
+                <p class="modal-subtitle">Select your preferred investment destination to explore exclusive opportunities</p>
+            </div>
+
+            <div class="country-options">
+                <a href="#" onclick="selectCountry('Indonesia')" class="country-option">
+                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                        <span class="country-name">Indonesia</span>
+                    </div>
+                    <p class="country-description">Emerging market with high growth potential and attractive yields</p>
+                </a>
+
+                <a href="#" onclick="selectCountry('Dubai')" class="country-option">
+                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                        <span class="country-name">Dubai</span>
+                    </div>
+                    <p class="country-description">Luxury real estate hub with tax advantages and world-class infrastructure</p>
+                </a>
+
+                <a href="#" onclick="selectCountry('Brazil')" class="country-option">
+                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                        <span class="country-name">Brazil</span>
+                    </div>
+                    <p class="country-description">Diverse market opportunities with strong fundamentals and growth prospects</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openRealEstateModal() {
+            document.getElementById('realEstateModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRealEstateModal() {
+            document.getElementById('realEstateModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function selectCountry(country) {
+            const message = `Hey Caio, I want to know about opportunities on Real Estate in ${country}`;
+            const whatsappUrl = `https://wa.me/5551993288772?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            closeRealEstateModal();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('realEstateModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRealEstateModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeRealEstateModal();
+            }
+        });
+    </script>
 
 </body>
 </html>
