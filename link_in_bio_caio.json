@@ -1,0 +1,345 @@
+{
+  "version": "0.4",
+  "title": "Caio de Camargo - Link Bio Page",
+  "type": "page",
+  "content": [
+    {
+      "id": "profile-header-section",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "content_position": "middle",
+        "background_background": "classic",
+        "background_color": "#101010",
+        "padding": { "unit": "px", "top": "40", "right": "16", "bottom": "48", "left": "16", "isLinked": false },
+        "animation": "fadeIn"
+      },
+      "elements": [
+        {
+          "id": "profile-header-column",
+          "elType": "column",
+          "settings": { "_column_size": 100 },
+          "elements": [
+            {
+              "id": "profile-photo-widget",
+              "elType": "widget",
+              "widgetType": "image",
+              "settings": {
+                "image": { "url": "https://placehold.co/120x120/2D2D2D/FFFFFF?text=Caio", "id": "" },
+                "align": "center",
+                "image_size": "custom",
+                "image_custom_dimension": { "width": "120", "height": "120" },
+                "border_radius": { "unit": "%", "top": "50", "right": "50", "bottom": "50", "left": "50", "isLinked": true },
+                "border_border": "solid",
+                "border_width": { "unit": "px", "top": "3", "right": "3", "bottom": "3", "left": "3", "isLinked": true },
+                "border_color": "#1C1C1C",
+                "box_shadow_box_shadow_type": "yes",
+                "box_shadow_box_shadow": { "horizontal": 0, "vertical": 4, "blur": 15, "spread": 0, "color": "rgba(0,0,0,0.2)" },
+                "_margin": { "unit": "px", "bottom": "16" }
+              }
+            },
+            {
+              "id": "profile-name-widget",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Caio de Camargo",
+                "align": "center",
+                "title_color": "#FFFFFF",
+                "typography_typography": "custom",
+                "typography_font_family": "Source Sans Pro",
+                "typography_font_size": { "unit": "rem", "size": 3.2, "sizes": [] },
+                "typography_font_weight": "700",
+                "typography_letter_spacing": { "unit": "em", "size": -0.03 },
+                "_margin": { "unit": "px", "bottom": "16" }
+              }
+            },
+            {
+              "id": "profile-tagline-widget",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Helping you grow with AI, Strategy & Business.",
+                "header_size": "p",
+                "align": "center",
+                "title_color": "#A0A0A0",
+                "typography_typography": "custom",
+                "typography_font_family": "Roboto",
+                "typography_font_size": { "unit": "rem", "size": 1.4, "sizes": [] },
+                "typography_font_weight": "400"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "link-cards-section",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "background_background": "classic",
+        "background_color": "#101010",
+        "padding": { "unit": "px", "top": "0", "right": "16", "bottom": "48", "left": "16", "isLinked": false }
+      },
+      "elements": [
+        {
+          "id": "link-cards-column",
+          "elType": "column",
+          "settings": { "_column_size": 100, "gap": { "unit": "px", "size": 20 } },
+          "elements": [
+            {
+              "id": "agency-card-widget",
+              "elType": "widget",
+              "widgetType": "call-to-action",
+              "settings": {
+                "skin": "cover",
+                "title": "Rarity Agency",
+                "description": "Marketing and AI agency to scale your brand and automate operations.",
+                "button": "Visit Agency →",
+                "link": { "url": "https://rarityagency.io", "is_external": "true", "nofollow": "true" },
+                "background_color": "#1C1C1C",
+                "border_border": "solid",
+                "border_width": { "unit": "px", "size": 1 },
+                "border_color": "#2D2D2D",
+                "border_radius": { "unit": "px", "size": 12 },
+                "vertical_position": "middle",
+                "text_align": "left",
+                "content_padding": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24", "isLinked": true },
+                "title_color": "#FFFFFF",
+                "title_typography_typography": "custom",
+                "title_typography_font_family": "Source Sans Pro",
+                "title_typography_font_size": { "unit": "rem", "size": 1.5 },
+                "title_typography_font_weight": "600",
+                "description_color": "#A0A0A0",
+                "description_typography_typography": "custom",
+                "description_typography_font_family": "Roboto",
+                "description_typography_font_size": { "unit": "rem", "size": 1 },
+                "button_text_color": "#A0A0A0",
+                "button_typography_typography": "custom",
+                "button_typography_font_family": "Roboto",
+                "button_typography_font_weight": "500",
+                "hover_effects": "none",
+                "background_hover_color": "#1C1C1C",
+                "border_hover_color": "#8B5CF6",
+                "box_shadow_box_shadow_type_hover": "yes",
+                "box_shadow_box_shadow_hover": { "horizontal": 0, "vertical": 12, "blur": 30, "spread": 0, "color": "rgba(0,0,0,0.3)" },
+                "_animation_stagger": 200
+              }
+            },
+            {
+              "id": "real-estate-card-widget",
+              "elType": "widget",
+              "widgetType": "call-to-action",
+              "settings": {
+                "skin": "cover",
+                "title": "Exclusive Real Estate Opportunities",
+                "description": "Discover high-yield investment opportunities in emerging markets. Limited spots available for serious investors.",
+                "button": "Explore Investments →",
+                "link": { "url": "#", "is_external": "", "nofollow": "" },
+                "background_color": "#1C1C1C",
+                "border_border": "solid",
+                "border_width": { "unit": "px", "size": 1 },
+                "border_color": "#2D2D2D",
+                "border_radius": { "unit": "px", "size": 12 },
+                "vertical_position": "middle",
+                "text_align": "left",
+                "content_padding": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24", "isLinked": true },
+                "title_color": "#FFFFFF",
+                "title_typography_typography": "custom",
+                "title_typography_font_family": "Source Sans Pro",
+                "title_typography_font_size": { "unit": "rem", "size": 1.5 },
+                "title_typography_font_weight": "600",
+                "description_color": "#A0A0A0",
+                "description_typography_typography": "custom",
+                "description_typography_font_family": "Roboto",
+                "description_typography_font_size": { "unit": "rem", "size": 1 },
+                "button_text_color": "#A0A0A0",
+                "button_typography_typography": "custom",
+                "button_typography_font_family": "Roboto",
+                "button_typography_font_weight": "500",
+                "hover_effects": "none",
+                "background_hover_color": "#1C1C1C",
+                "border_hover_color": "rgba(34, 197, 94, 0.3)",
+                "box_shadow_box_shadow_type_hover": "yes",
+                "box_shadow_box_shadow_hover": { "horizontal": 0, "vertical": 12, "blur": 30, "spread": 0, "color": "rgba(0,0,0,0.3)" },
+                "custom_id": "real-estate-popup-trigger",
+                "_animation_stagger": 400
+              }
+            },
+            {
+              "id": "consulting-card-widget",
+              "elType": "widget",
+              "widgetType": "call-to-action",
+              "settings": {
+                "skin": "cover",
+                "title": "Strategy & Consulting",
+                "description": "Personal and strategic consulting to unlock your business growth.",
+                "button": "Learn More →",
+                "link": { "url": "https://calendly.com/caiodcamargo/caiodecamargo_privatecall", "is_external": "true", "nofollow": "true" },
+                "background_color": "#1C1C1C",
+                "border_border": "solid",
+                "border_width": { "unit": "px", "size": 1 },
+                "border_color": "#2D2D2D",
+                "border_radius": { "unit": "px", "size": 12 },
+                "vertical_position": "middle",
+                "text_align": "left",
+                "content_padding": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24", "isLinked": true },
+                "title_color": "#FFFFFF",
+                "title_typography_typography": "custom",
+                "title_typography_font_family": "Source Sans Pro",
+                "title_typography_font_size": { "unit": "rem", "size": 1.5 },
+                "title_typography_font_weight": "600",
+                "description_color": "#A0A0A0",
+                "description_typography_typography": "custom",
+                "description_typography_font_family": "Roboto",
+                "description_typography_font_size": { "unit": "rem", "size": 1 },
+                "button_text_color": "#A0A0A0",
+                "button_typography_typography": "custom",
+                "button_typography_font_family": "Roboto",
+                "button_typography_font_weight": "500",
+                "hover_effects": "none",
+                "background_hover_color": "#1C1C1C",
+                "border_hover_color": "#8B5CF6",
+                "box_shadow_box_shadow_type_hover": "yes",
+                "box_shadow_box_shadow_hover": { "horizontal": 0, "vertical": 12, "blur": 30, "spread": 0, "color": "rgba(0,0,0,0.3)" },
+                "_animation_stagger": 600
+              }
+            },
+            {
+              "id": "linkedin-card-widget",
+              "elType": "widget",
+              "widgetType": "call-to-action",
+              "settings": {
+                "skin": "cover",
+                "title": "Connect on LinkedIn",
+                "description": "Let's connect and explore professional opportunities on LinkedIn.",
+                "button": "Connect Now →",
+                "link": { "url": "https://www.linkedin.com/in/caiodecamargo/", "is_external": "true", "nofollow": "true" },
+                "background_color": "#1C1C1C",
+                "border_border": "solid",
+                "border_width": { "unit": "px", "size": 1 },
+                "border_color": "#2D2D2D",
+                "border_radius": { "unit": "px", "size": 12 },
+                "vertical_position": "middle",
+                "text_align": "left",
+                "content_padding": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24", "isLinked": true },
+                "title_color": "#FFFFFF",
+                "title_typography_typography": "custom",
+                "title_typography_font_family": "Source Sans Pro",
+                "title_typography_font_size": { "unit": "rem", "size": 1.5 },
+                "title_typography_font_weight": "600",
+                "description_color": "#A0A0A0",
+                "description_typography_typography": "custom",
+                "description_typography_font_family": "Roboto",
+                "description_typography_font_size": { "unit": "rem", "size": 1 },
+                "button_text_color": "#A0A0A0",
+                "button_typography_typography": "custom",
+                "button_typography_font_family": "Roboto",
+                "button_typography_font_weight": "500",
+                "hover_effects": "none",
+                "background_hover_color": "#1C1C1C",
+                "border_hover_color": "#8B5CF6",
+                "box_shadow_box_shadow_type_hover": "yes",
+                "box_shadow_box_shadow_hover": { "horizontal": 0, "vertical": 12, "blur": 30, "spread": 0, "color": "rgba(0,0,0,0.3)" },
+                "_animation_stagger": 800
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mission-section",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "background_background": "classic",
+        "background_color": "#101010",
+        "padding": { "unit": "px", "top": "0", "right": "16", "bottom": "48", "left": "16", "isLinked": false }
+      },
+      "elements": [
+        {
+          "id": "mission-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "background_background": "classic",
+            "background_color": "#1C1C1C",
+            "border_border": "solid",
+            "border_width": { "unit": "px", "size": 1 },
+            "border_color": "#2D2D2D",
+            "border_radius": { "unit": "px", "size": 12 },
+            "padding": { "unit": "px", "top": "32", "right": "32", "bottom": "32", "left": "32", "isLinked": true }
+          },
+          "elements": [
+            {
+              "id": "mission-text-widget",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"text-align: center;\">My mission is to provide the strategic leverage you need to achieve your goals.</p>",
+                "text_color": "#A0A0A0",
+                "typography_typography": "custom",
+                "typography_font_family": "Roboto",
+                "typography_font_size": { "unit": "rem", "size": 1.2 },
+                "typography_font_weight": "500"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "footer-section",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "background_background": "classic",
+        "background_color": "#101010",
+        "padding": { "unit": "px", "top": "0", "right": "16", "bottom": "32", "left": "16", "isLinked": false }
+      },
+      "elements": [
+        {
+          "id": "footer-column",
+          "elType": "column",
+          "settings": { "_column_size": 100 },
+          "elements": [
+            {
+              "id": "social-icons-widget",
+              "elType": "widget",
+              "widgetType": "social-icons",
+              "settings": {
+                "social_icon_list": [
+                  { "social": "linkedin", "link": { "url": "https://www.linkedin.com/in/caiodecamargo/", "is_external": "true", "nofollow": "true" } },
+                  { "social": "instagram", "link": { "url": "https://www.instagram.com/caiodcamargo/", "is_external": "true", "nofollow": "true" } },
+                  { "social": "twitter", "link": { "url": "https://x.com/caiodcamargo", "is_external": "true", "nofollow": "true" } }
+                ],
+                "shape": "circle",
+                "primary_color": "rgba(160,160,160,0)",
+                "secondary_color": "#A0A0A0",
+                "icon_size": { "unit": "px", "size": 28 },
+                "icon_padding": { "unit": "em", "size": 0 },
+                "hover_primary_color": "rgba(255,255,255,0)",
+                "hover_secondary_color": "#FFFFFF",
+                "hover_animation": "grow"
+              }
+            },
+            {
+              "id": "copyright-widget",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"text-align: center;\">© 2025 Caio de Camargo. All Rights Reserved.</p>",
+                "text_color": "#A0A0A0",
+                "typography_typography": "custom",
+                "typography_font_family": "Roboto",
+                "typography_font_size": { "unit": "rem", "size": 0.85 }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
