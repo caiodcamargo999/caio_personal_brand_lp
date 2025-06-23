@@ -1,0 +1,368 @@
+{
+  "version": "0.4",
+  "title": "Rarity Agency Landing Page",
+  "type": "page",
+  "content": [
+    {
+      "id": "header-section",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "content_width": {
+          "unit": "px",
+          "size": 1100
+        },
+        "padding": {
+          "unit": "px",
+          "top": "32",
+          "right": "0",
+          "bottom": "32",
+          "left": "0",
+          "isLinked": false
+        },
+        "background_background": "classic",
+        "background_color": "#0A192F",
+        "animation": "fadeInDown"
+      },
+      "elements": [
+        {
+          "id": "header-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "logo-image",
+              "elType": "widget",
+              "widgetType": "image",
+              "settings": {
+                "image": {
+                  "url": "https://placehold.co/440x100/0A192F/FFFFFF?text=Rarity+AGENCY&font=poppins",
+                  "id": ""
+                },
+                "align": "center",
+                "width": {
+                  "unit": "px",
+                  "size": 220
+                },
+                "link_to": "custom",
+                "link": {
+                  "url": "https://rarityagency.io/",
+                  "is_external": true,
+                  "nofollow": ""
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hero-section",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "content_width": {
+          "unit": "px",
+          "size": 1100
+        },
+        "padding": {
+          "unit": "px",
+          "top": "48",
+          "right": "0",
+          "bottom": "48",
+          "left": "0",
+          "isLinked": false
+        },
+        "background_background": "classic",
+        "background_color": "#0A192F",
+        "animation": "fadeIn"
+      },
+      "elements": [
+        {
+          "id": "hero-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "hero-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Unlock Your <span style=\"color:#64FFDA;\">Growth Engine</span>",
+                "header_size": "h1",
+                "align": "center",
+                "title_color": "#CCD6F6",
+                "typography_typography": "custom",
+                "typography_font_family": "Poppins",
+                "typography_font_size": {
+                  "unit": "rem",
+                  "size": 3.5
+                },
+                "typography_font_weight": "700"
+              }
+            },
+            {
+              "id": "hero-paragraph",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p>We build scalable growth systems for startups and e-commerce brands, turning creative strategies into measurable profit.</p>",
+                "align": "center",
+                "text_color": "#8892B0",
+                "typography_typography": "custom",
+                "typography_font_family": "Poppins",
+                "typography_font_size": {
+                  "unit": "rem",
+                  "size": 1.25
+                },
+                "_padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "20",
+                  "bottom": "32",
+                  "left": "20",
+                  "isLinked": false
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "video-section",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "content_width": {
+          "unit": "px",
+          "size": 1100
+        },
+        "padding": {
+          "unit": "px",
+          "top": "32",
+          "right": "0",
+          "bottom": "32",
+          "left": "0",
+          "isLinked": false
+        },
+        "background_background": "classic",
+        "background_color": "#0A192F",
+        "animation": "fadeInUp"
+      },
+      "elements": [
+        {
+          "id": "video-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "video-subtitle",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "SEE OUR APPROACH IN ACTION",
+                "header_size": "h2",
+                "align": "center",
+                "title_color": "#64FFDA",
+                "typography_typography": "custom",
+                "typography_font_family": "Poppins",
+                "typography_font_size": {
+                  "unit": "rem",
+                  "size": 1
+                },
+                "typography_letter_spacing": {
+                  "unit": "px",
+                  "size": 2
+                }
+              }
+            },
+            {
+              "id": "video-placeholder-widget",
+              "elType": "widget",
+              "widgetType": "video",
+              "settings": {
+                "video_type": "youtube",
+                "show_image_overlay": "yes",
+                "image_overlay": {
+                    "url": "https://placehold.co/800x450/0A192F/64FFDA?text=Play+Video",
+                    "id": ""
+                },
+                "width": {
+                    "unit": "px",
+                    "size": 800
+                },
+                "align": "center",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "12",
+                  "right": "12",
+                  "bottom": "12",
+                  "left": "12",
+                  "isLinked": true
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta-section",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "content_width": {
+          "unit": "px",
+          "size": 1100
+        },
+        "padding": {
+          "unit": "px",
+          "top": "48",
+          "right": "0",
+          "bottom": "48",
+          "left": "0",
+          "isLinked": false
+        },
+        "background_background": "classic",
+        "background_color": "#0A192F",
+        "animation": "fadeInUp"
+      },
+      "elements": [
+        {
+          "id": "cta-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "cta-button",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Book a Free Strategy Call",
+                "link": {
+                  "url": "https://www.linkedin.com/in/caiodecamargo/",
+                  "is_external": true,
+                  "nofollow": ""
+                },
+                "align": "center",
+                "typography_typography": "custom",
+                "typography_font_family": "Poppins",
+                "typography_font_size": {
+                  "unit": "rem",
+                  "size": 1.2
+                },
+                "typography_font_weight": "600",
+                "button_text_color": "#64FFDA",
+                "background_color": "rgba(255,255,255,0)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "2",
+                  "right": "2",
+                  "bottom": "2",
+                  "left": "2",
+                  "isLinked": true
+                },
+                "border_color": "#64FFDA",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "8",
+                  "right": "8",
+                  "bottom": "8",
+                  "left": "8",
+                  "isLinked": true
+                },
+                "padding": {
+                    "unit": "px",
+                    "top": "16",
+                    "right": "48",
+                    "bottom": "16",
+                    "left": "48",
+                    "isLinked": false
+                },
+                "hover_color": "#64FFDA",
+                "button_background_hover_color": "rgba(100, 255, 218, 0.1)",
+                "hover_animation": "translateY",
+                "box_shadow_box_shadow_type": "yes",
+                "box_shadow_hover_box_shadow": {
+                    "horizontal": 0,
+                    "vertical": 8,
+                    "blur": 25,
+                    "spread": 0,
+                    "color": "rgba(100, 255, 218, 0.15)"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "footer-section",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "content_width": {
+          "unit": "px",
+          "size": 1100
+        },
+        "padding": {
+          "unit": "px",
+          "top": "32",
+          "right": "0",
+          "bottom": "32",
+          "left": "0",
+          "isLinked": false
+        },
+        "background_background": "classic",
+        "background_color": "#0A192F",
+        "border_border": "solid",
+        "border_width":{
+            "unit":"px",
+            "top":"1",
+            "right":"0",
+            "bottom":"0",
+            "left":"0",
+            "isLinked":false
+        },
+        "border_color":"#1D345C"
+      },
+      "elements": [
+        {
+          "id": "footer-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "footer-text",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p>Rarity Agency © 2025 | All rights reserved.</p>",
+                "align": "center",
+                "text_color": "#8892B0",
+                "typography_typography": "custom",
+                "typography_font_family": "Poppins",
+                "typography_font_size": {
+                  "unit": "rem",
+                  "size": 0.9
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
