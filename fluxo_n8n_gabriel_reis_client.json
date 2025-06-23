@@ -1,3 +1,199 @@
-{"nodes":[{"parameters":{"httpMethod":"POST","path":"financeiro-whatsapp","options":{},"responseMode":"onReceived"},"id":"Webhook_Entrada","name":"Webhook WhatsApp","type":"n8n-nodes-base.webhook","typeVersion":1,"position":[300,300]},{"parameters":{"functionCode":"const text = $json.Body || \"\";\nconst phone = $json.From || \"\";\n\nconst regex = /(gasto|receita)\\s+(\\d+[.,]?\\d*)\\s+(\\w+)/i;\nconst match = text.match(regex);\n\nif (!match) throw new Error(\"Formato de mensagem inválido.\");\n\nreturn [{\n  json: {\n    user_phone: phone.replace(\"whatsapp:\", \"\"),\n    type: match[1].toLowerCase() === \"gasto\" ? \"expense\" : \"income\",\n    amount: parseFloat(match[2].replace(\",\", \".\")),\n    category: match[3].toLowerCase(),\n    date: new Date().toISOString()\n  }\n}];"},"id":"Parse_Mensagem","name":"Parse Mensagem","type":"n8n-nodes-base.function","typeVersion":1,"position":[500,300]},{"parameters":{"url":"https://api.seusistema.com/lancamentos","method":"POST","authentication":"headerAuth","responseFormat":"json","options":{},"headerParameters":[{"name":"Authorization","value":"Bearer SUA_API_TOKEN"}],"bodyParametersUi":{"parameter":[{"name":"user_phone","value":"={{$json[\"user_phone\"]}}"},{"name":"type","value":"={{$json[\"type\"]}}"},{"name":"amount","value":"={{$json[\"amount\"]}}"},{"name":"category","value":"={{$json[\"category\"]}}"},{"name":"date","value":"={{$json[\"date\"]}}"}]}},"id":"Registrar_HTTP","name":"Registrar via API","type":"n8n-nodes-base.httpRequest","typeVersion":1,"position":[700,300]},{"parameters":{"from":"+55SEUNUMEROTWILIO","to":"={{$json[\"user_phone\"]}}","message":"={{\"✅ \" + ($json[\"type\"] === \"income\" ? \"Receita\" : \"Gasto\") + \" de R$\" + $json[\"amount\"].toFixed(2) + \" em \" + $json[\"category\"] + \" registrado com sucesso!\"}}","toWhatsapp":true},"id":"Responder_Usuario","name":"Enviar Confirmação","type":"n8n-nodes-base.twilio","typeVersion":1,"position":[900,300],"credentials":{"twilioApi":"Twilio WhatsApp"}}],"connections":{"Webhook WhatsApp":[[{"node":"Parse Mensagem","type":"main","index":0}]],"Parse Mensagem":[[{"node":"Registrar via API","type":"main","index":0}]],"Registrar via API":[[{"node":"Enviar Confirmação","type":"main","index":0}]]},"active":true,"settings":{"timezone":"America/Sao_Paulo"},"name":"Financeiro WhatsApp AutoBot","versionId":"v1.0"}
+{
+  "name": "Gestor Financeiro Pessoal via WhatsApp",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "764ea3df-3f7c-4034-8c88-e21fc1025539",
+      "name": "START",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "path": "webhook/finance-whatsapp",
+        "httpMethod": "POST",
+        "options": {}
+      },
+      "id": "e6f424c5-5a8d-4e96-a849-c16e78a6fffa",
+      "name": "Webhook (WhatsApp)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        200,
+        260
+      ],
+      "webhookId": "b2848c90-482a-4316-92f7-f0d7e68331da",
+      "notes": "⚠️ **CONFIGURE AQUI** ⚠️\n\nEste é o ponto de entrada do fluxo.\n\n1.  Copie esta URL e configure-a no seu provedor de WhatsApp (Twilio, Z-API, 360Dialog).\n2.  **Importante:** A estrutura do JSON que chega aqui varia entre os provedores. Você talvez precise ajustar as expressões nos nós seguintes para buscar o número do remetente (`sender`) e o texto da mensagem (`message`).\n\nExemplos comuns:\n-   `body.from` ou `body.sender.id` para o número.\n-   `body.message.text` ou `body.text` para a mensagem."
+    },
+    {
+      "parameters": {
+        "jsCode": "// 🧠 Lógica para extrair dados da mensagem de texto\n\n// Pega o primeiro item que chega no nó\nconst item = items[0];\n\n// ⚠️ ATENÇÃO: Ajuste os caminhos abaixo conforme o payload do seu webhook\n// Exemplo para um payload comum: { \"from\": \"whatsapp:+5511999998888\", \"text\": \"Gasto 32,50 mercado\" }\nconst messageText = item.json.body.text || '';\nconst senderPhone = item.json.body.from || '';\n\n// Regex para capturar: (tipo) (valor) (categoria)\n// - (gasto|receita|despesa): Captura o tipo, case-insensitive\n// - (\\d+[.,]?\\d*): Captura o valor, aceitando 1000, 10.50 e 10,50\n// - (.+): Captura todo o resto como categoria\nconst regex = /(gasto|receita|despesa)\\s+(\\d+[.,]?\\d*)\\s+(.+)/i;\n\nconst match = messageText.match(regex);\n\n// Se a regex não encontrar o padrão, retorna um objeto de falha\nif (!match) {\n  item.json.success = false;\n  item.json.errorMessage = 'Formato da mensagem inválido.';\n  item.json.sender = senderPhone; // Mantém o remetente para enviar msg de erro\n  return [item];\n}\n\n// Extrai os dados capturados\nconst rawType = match[1].toLowerCase();\nconst rawAmount = match[2];\nconst category = match[3];\n\n// Normaliza os dados\nconst type = (rawType === 'gasto' || rawType === 'despesa') ? 'expense' : 'income';\nconst amount = parseFloat(rawAmount.replace(',', '.'));\n\n// Prepara o objeto de saída para os próximos nós\nitem.json.parsedData = {\n  user_phone: senderPhone,\n  type: type,\n  amount: amount,\n  category: category,\n  date: new Date().toISOString()\n};\n\nitem.json.success = true;\n\n// Retorna o item com os dados processados\nreturn [item];\n"
+      },
+      "id": "e0b57e7c-a45e-41d6-b072-c2e915478441",
+      "name": "Parse Message (Code)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        420,
+        260
+      ],
+      "notes": "Este nó contém a lógica principal para interpretar a mensagem do usuário usando Regex."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.success }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "ef26f634-b20f-488b-a320-f47ca087dfac",
+      "name": "Check for Valid Format",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        640,
+        260
+      ],
+      "notes": "Verifica se o nó anterior conseguiu extrair os dados com sucesso. Se `success` for `true`, continua o fluxo. Se não, vai para a mensagem de erro."
+    },
+    {
+      "parameters": {
+        "url": "https://sua-api.exemplo.com/transactions",
+        "authentication": "headerAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.parsedData }}",
+        "options": {}
+      },
+      "id": "a576c79a-a82f-48d6-993d-3b52f19024f2",
+      "name": "Registrar Transação",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        860,
+        160
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "placeholder-credentials",
+          "name": "Placeholder API Token"
+        }
+      },
+      "notes": "⚠️ **CONFIGURE AQUI** ⚠️\n\n1.  **URL:** Substitua pela URL da sua API/Webhook (Supabase, Airtable, etc.) que irá receber os dados.\n2.  **Authentication:** Selecione o método de autenticação correto (ex: Header Auth).\n3.  **Credentials:** Crie uma nova credencial com seu `Bearer Token` ou `API Key`.\n    -   Nome do Header: `Authorization`\n    -   Valor do Header: `Bearer SEU_TOKEN_AQUI`\n4.  **Body:** O corpo da requisição já está configurado para enviar os dados do nó `Parse Message`."
+    },
+    {
+      "parameters": {
+        "url": "https://api.seuwpprovider.com/v1/messages",
+        "authentication": "headerAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"to\": \"{{ $json.parsedData.user_phone }}\",\n  \"text\": \"✅ {{ $json.parsedData.type === 'expense' ? 'Gasto' : 'Receita' }} de R$ {{ $json.parsedData.amount.toFixed(2).replace('.', ',') }} em '{{ $json.parsedData.category }}' registrado com sucesso!\"\n}",
+        "options": {}
+      },
+      "id": "e6750012-bd72-46c2-8438-e42775f0a359",
+      "name": "Enviar Confirmação",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1080,
+        160
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "placeholder-credentials",
+          "name": "Placeholder API Token"
+        }
+      },
+      "notes": "⚠️ **CONFIGURE AQUI** ⚠️\n\n1.  **URL:** Substitua pela URL da API do seu provedor de WhatsApp para enviar mensagens.\n2.  **Authentication & Credentials:** Configure a autenticação necessária para a API do WhatsApp.\n3.  **Body:** O corpo da requisição precisa ser ajustado de acordo com a documentação do seu provedor. Os campos `to` e `text` já estão usando expressões para montar a mensagem de confirmação dinâmica."
+    },
+    {
+      "parameters": {
+        "url": "https://api.seuwpprovider.com/v1/messages",
+        "authentication": "headerAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"to\": \"{{ $json.sender }}\",\n  \"text\": \"😕 Ops, não entendi. Por favor, envie sua mensagem no formato: `gasto VALOR categoria` ou `receita VALOR categoria`.\\n\\nExemplo: `gasto 32,50 almoço`\"\n}",
+        "options": {}
+      },
+      "id": "e512406f-b44c-4720-94fa-678c2e742416",
+      "name": "Enviar Mensagem de Erro",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        860,
+        380
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "placeholder-credentials",
+          "name": "Placeholder API Token"
+        }
+      },
+      "notes": "⚠️ **CONFIGURE AQUI** ⚠️\n\n1.  **URL:** Use a mesma URL do nó de confirmação para enviar mensagens.\n2.  **Authentication & Credentials:** Configure a mesma autenticação.\n3.  **Body:** O corpo já está configurado para enviar uma mensagem de ajuda ao usuário."
+    }
+  ],
+  "connections": {
+    "Webhook (WhatsApp)": {
+      "main": [
+        [
+          {
+            "node": "Parse Message (Code)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Message (Code)": {
+      "main": [
+        [
+          {
+            "node": "Check for Valid Format",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check for Valid Format": {
+      "main": [
+        [
+          {
+            "node": "Registrar Transação",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Enviar Mensagem de Erro",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Registrar Transação": {
+      "main": [
+        [
+          {
+            "node": "Enviar Confirmação",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {}
+}
 
 
